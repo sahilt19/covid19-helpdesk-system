@@ -1,0 +1,61 @@
+print("*********************************************************")
+print("*                                                       *")
+print("*                                                       *")
+print("*          WELCOME TO COWELL_19                         *")
+print("*                                                       *")
+print("*                                                       *")
+print("*********************************************************")
+
+num=random.randint(1,10000)
+print("THE FOLLOWING IS YOUR UNIQUE SERIAL NUMBER. PLEASE USE THIS WHEN ASKED:",num)
+
+sr_no=input("enter serial number:")
+name=input("enter your name:")
+gender=input("enter your gender (M/F/Other):")
+age=input("enter your age:")
+phone_no=input("enter your phone number:")
+test=str(input("did you get RTPCR test for coronavirus? :"))
+if test=='yes':
+    corona_positive=str(input("have you tested positive?:",))
+    if corona_positive=='yes':
+        print("hang on, we're fetching a list of all hospitals in pune for you.....")
+        url="http://www.helplinedatabase.com/hospitals-india/pune-19.html"
+        url2="https://www.pmc.gov.in/en/hospital_list"
+        print(webbrowser.open(url,))
+        print(webbrowser.open(url2,))
+        q1("dbu")
+    else:
+        vaxine("vax")
+        q1("dbu")
+        
+else:
+    no_rtpcr=str(input("do you want to take a quick test to check if you match any symptoms for coronavirus?:"))
+    if no_rtpcr=='yes':
+        com_sym=str(input("have you been experiencing fever, drycough or tiredness?:"))
+        less_com=str(input("do feel aches and pains, sore throat, diarrhoea,conjunctivitis,headache, loss of taste or smell, skin rashes?:"))
+        ser_sym=str(input("do you feel difficulty in breathing, chest pain, loss of speech or movement?:"))
+        q2("dbu2")
+        print()
+        if com_sym=='yes' and less_com=='no' and ser_sym=='no':
+            print("fever, drycough, tiredness are the most common symptoms, which means they are mild and can be treated at home",'\n','you should get tested at the nearest centre')
+        elif less_com=='yes' and com_sym=='no' and ser_sym=='no':
+            print("pains, sore throat, diarrhoea,conjunctivitis,headache, loss of taste or smell, skin rashes are less comman symptoms and you should get tested immedietly since these symptoms are to be taken care of critically")
+        elif ser_sym=='yes' and com_sym=='no' and less_com=='no':
+            print("Seek immediate medical attention if you have serious symptoms like difficulty in breathing, chest pain, loss of speech or movement . Always call before visiting your doctor or health facility.")
+        elif com_sym=='yes' and less_com=='yes':
+            print("you have common as well as less common symptoms, we advise you get tested")
+        elif com_sym=='yes' and ser_sym=='yes':
+            print("you have common as well as serious symptoms, you should look for a testing centre ASAP")
+        elif less_com=='yes' and ser_sym=='yes':
+            print("you seem to have both less comman as well as serious symptoms. we advise you get tested ASAP")
+        elif com_sym=='yes' and less_com=='yes' and ser_sym=='yes':
+            print("unfortunately looks like you check all the boxes of a corona positive patient. do not panick, we advise you first get a test at the nearest centre....")
+        else:
+            vaxine("vax")
+            q2("dbu2")
+    else:
+        print("well, that's alright! Thank you for for your time, Stay safe and stay strong!")
+
+db1.commit()
+db1.close()
+
